@@ -1,5 +1,7 @@
 module V1
 	class ItemsController < ApplicationController
+		helper ItemHelper
+
 		before_action :get_store
 		before_action :get_item, only: :update
 		def index
@@ -17,6 +19,17 @@ module V1
 			end
 		end
 
+		def add_price
+			@total = @store.items.sum(:price) and return if add_price_params[:items].blank?
+
+			codes = add_price_params[:items].split(',').map(&:strip)
+			codes_group = Hash[codes.group_by(&:itself).map { |code, count| [code, count.size] }]
+			items = @store.items.where code: codes
+			@total = BigDecimal(items.inject(0) do |sum, item|
+				sum + codes_group[item.code] * item.price
+			end)
+		end
+
 		private
 
 		def get_store
@@ -31,6 +44,10 @@ module V1
 
 		def update_params
 			params.permit(:price)
+		end
+
+		def add_price_params
+			params.permit(:items)
 		end
 	end
 end

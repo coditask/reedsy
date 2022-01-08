@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   namespace :v1 do
     resources :store, only: [] do
-      resources :items, only: [:index, :update]
+      resources :items, only: [:index, :update] do
+        collection do
+          get 'add_price'
+        end
+      end
+
     end
 
   end
