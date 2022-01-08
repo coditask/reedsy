@@ -22,7 +22,11 @@ RSpec.describe V1::ItemsController, type: :request do
       patch "/v1/store/#{Store.last.id}/items/#{Item.last.id.next}", as: :json
       expect(response.code).to eq '404'
     end
-    it 'should update the item price' do
+    it 'should not render 422 if new price is not passed' do
+      patch "/v1/store/#{Store.last.id}/items/#{item.id}", as: :json
+      expect(response.code).to eq '422'
+    end
+    it 'should update the item price if new price is passed' do
       patch "/v1/store/#{Store.last.id}/items/#{item.id}", as: :json, params: { price: 200 }
       expect(response.code).to eq '204'
       expect(item.reload.price).to eq 200

@@ -7,7 +7,9 @@ module V1
 		end
 
 		def update
-			@item.price = update_params[:price].to_i
+			head :unprocessable_entity and return if update_params[:price].blank?
+
+			@item.price = update_params[:price]
 			if @item.save
 				head :no_content
 			else
