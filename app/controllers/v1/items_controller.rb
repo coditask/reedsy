@@ -6,9 +6,10 @@ module V1
 		before_action :get_item, only: :update
 
 		def index
-			@items = Rails.cache.fetch(Item.maximum(:updated_at)) do
+			items = Rails.cache.fetch('Item.maximum(:updated_at)') do
 				@store.items
 			end
+			@items = items.page(params[:page]).per(params[:per])
 		end
 
 		def update
