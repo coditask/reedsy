@@ -48,7 +48,7 @@ RSpec.describe V1::ItemsController, type: :request do
     context 'No offer' do
       context 'Items: MUG, TSHIRT, HOODIE' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, HOODIE", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, HOODIE", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '41.00€'
         end
@@ -56,7 +56,7 @@ RSpec.describe V1::ItemsController, type: :request do
 
       context 'Items: MUG, TSHIRT, MUG' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, MUG", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, MUG", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '27.00€'
         end
@@ -64,7 +64,7 @@ RSpec.describe V1::ItemsController, type: :request do
 
       context 'Items: MUG, TSHIRT, MUG, MUG' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, MUG, MUG", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, MUG, MUG", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '33.00€'
         end
@@ -72,7 +72,7 @@ RSpec.describe V1::ItemsController, type: :request do
 
       context 'Items: MUG, TSHIRT, TSHIRT, TSHIRT, TSHIRT, MUG, HOODIE' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, TSHIRT, TSHIRT, TSHIRT, MUG, HOODIE", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, TSHIRT, TSHIRT, TSHIRT, MUG, HOODIE", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '92.00€'
         end
@@ -97,7 +97,7 @@ RSpec.describe V1::ItemsController, type: :request do
       end
       context 'Items: MUG, TSHIRT, HOODIE' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, HOODIE", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, HOODIE", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '41.00€'
         end
@@ -105,7 +105,7 @@ RSpec.describe V1::ItemsController, type: :request do
 
       context 'Items: MUG, TSHIRT, MUG' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, MUG", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, MUG", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '21.00€'
         end
@@ -113,7 +113,7 @@ RSpec.describe V1::ItemsController, type: :request do
 
       context 'Items: MUG, TSHIRT, MUG, MUG' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, MUG, MUG", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, MUG, MUG", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '27.00€'
         end
@@ -121,7 +121,7 @@ RSpec.describe V1::ItemsController, type: :request do
 
       context 'Items: MUG, TSHIRT, MUG, MUG, MUG' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, MUG, MUG, MUG", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, MUG, MUG, MUG", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '33.00€'
         end
@@ -129,7 +129,7 @@ RSpec.describe V1::ItemsController, type: :request do
 
       context 'Items: MUG, TSHIRT, TSHIRT, TSHIRT, TSHIRT, MUG, HOODIE' do
         it 'should return the correct total' do
-          get "/v1/store/#{store.id}/items/add_price?items=MUG, TSHIRT, TSHIRT, TSHIRT, TSHIRT, MUG, HOODIE", as: :json
+          get "/v1/store/#{store.id}/items/add_price?item_codes=MUG, TSHIRT, TSHIRT, TSHIRT, TSHIRT, MUG, HOODIE", as: :json
           expect(response).to have_http_status(:ok)
           expect(json_response['total']).to eq '68.00€'
         end
