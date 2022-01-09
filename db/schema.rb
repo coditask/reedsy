@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2022_01_09_001123) do
   end
 
   create_table "percentage_discounts", force: :cascade do |t|
-    t.integer "minimum_items", null: false
-    t.integer "discounted_items", null: false
+    t.integer "minimum_items"
+    t.integer "discounted_items"
     t.integer "percentage", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
