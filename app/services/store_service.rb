@@ -6,7 +6,7 @@ class StoreService
 
       codes = item_codes.split(',').map(&:strip)
       codes_group = Hash[codes.group_by(&:itself).map { |code, count| [code, count.size] }]
-      items = store.items.where code: codes
+      items = store.items.where(code: codes).includes(:free_discount, :percentage_discount)
       items.inject(0) do |sum, item|
         sum + BigDecimal(effective_item_price(item, codes_group))
       end
