@@ -5,6 +5,10 @@ class Item < ApplicationRecord
 	validates :code, presence: true, uniqueness: { scope: :store_id }
 	validate :free_and_percentage_discount_can_not_set_together
 
+	def has_offer?
+		free_discount.present? || percentage_discount.present?
+	end
+
 	private
 
 	def free_and_percentage_discount_can_not_set_together

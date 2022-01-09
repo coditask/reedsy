@@ -7,7 +7,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 store = Store.create name: 'Store 1'
 store2 = Store.create name: 'Store 2'
-Item.create([ { code: 'MUG', name: 'Reedsy Mug', price: 600, store_id: store.id },
-	          { code: 'MUG', name: 'Reedsy Mug', price: 600, store_id: store2.id },
-	          { code: 'TSHIRT', name: 'Reedsy T-shirt', price: 1500, store_id: store.id },
-	          { code: 'HOODIE', name: 'Reedsy Hoodie', price: 2000, store_id: store2.id }])
+free_discount = FreeDiscount.create minimum_items: 2, free_items: 1
+percentage_discount = PercentageDiscount.create minimum_items: 3, percentage: 30
+Item.create([
+              { code: 'MUG', name: 'Reedsy Mug', price: 600, store: store, free_discount: free_discount },
+              { code: 'TSHIRT', name: 'Reedsy T-shirt', price: 1500, store: store, percentage_discount: percentage_discount },
+              { code: 'HOODIE', name: 'Reedsy Hoodie', price: 2000, store: store },
+              { code: 'MUG', name: 'Reedsy Mug', price: 600, store: store2 }
+            ])
