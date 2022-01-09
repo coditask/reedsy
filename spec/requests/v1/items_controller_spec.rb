@@ -19,15 +19,15 @@ RSpec.describe V1::ItemsController, type: :request do
 
   describe 'PATCH /update' do
     it 'should render 404 if item is not found' do
-      patch "/v1/store/#{Store.last.id}/items/#{Item.last.id.next}", as: :json
+      patch "/v1/store/#{Store.last.id}/items/#{Item.last.id.next}/update_price", as: :json
       expect(response).to have_http_status(:not_found)
     end
     it 'should render unprocessable_entity if new price is not passed' do
-      patch "/v1/store/#{Store.last.id}/items/#{item.id}", as: :json
+      patch "/v1/store/#{Store.last.id}/items/#{item.id}/update_price", as: :json
       expect(response).to have_http_status(:unprocessable_entity)
     end
     it 'should update the item price if new price is passed' do
-      patch "/v1/store/#{Store.last.id}/items/#{item.id}", as: :json, params: { price: 200 }
+      patch "/v1/store/#{Store.last.id}/items/#{item.id}/update_price", as: :json, params: { price: 200 }
       expect(response.code).to eq '204'
       expect(item.reload.price).to eq 200
     end

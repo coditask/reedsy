@@ -3,7 +3,7 @@ module V1
     helper ItemHelper
 
     before_action :get_store
-    before_action :get_item, only: :update
+    before_action :get_item, only: :update_price
 
     def index
       items = Rails.cache.fetch('Item.maximum(:updated_at)') do
@@ -12,7 +12,7 @@ module V1
       @items = items.page(params[:page]).per(params[:per])
     end
 
-    def update
+    def update_price
       head :unprocessable_entity and return if update_params[:price].blank?
 
       @item.price = update_params[:price]
