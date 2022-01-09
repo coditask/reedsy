@@ -1,18 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  let(:item) { FactoryBot.create :item }
-  let(:item2) { FactoryBot.create :item }
+  let(:free_discount_item) { FactoryBot.create :item, :free_discount }
+  let(:percentage_discount_item) { FactoryBot.create :item, :percentage_discount }
 
   it 'should validate the uniqueness of code on the scope of store' do
-    item2.code = item.code
-    expect(item2).to be_valid
-    item2.store = item.store
-    expect(item2).to be_invalid
+    percentage_discount_item.code = free_discount_item.code
+    expect(percentage_discount_item).to be_valid
+    percentage_discount_item.store = free_discount_item.store
+    expect(percentage_discount_item).to be_invalid
   end
 
   it 'should validate the presence of code' do
-    item.code = nil
-    expect(item).to be_invalid
+    free_discount_item.code = nil
+    expect(free_discount_item).to be_invalid
+  end
+
+  it 'should validate either one of free_discount or percentage_discount' do
+    free_discount_item.percentage_discount = FactoryBot.create :percentage_discount
+    expect(free_discount_item).to be_invalid
   end
 end
