@@ -1,24 +1,79 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#Setup
+###Ruby requirement: **3.1.0**
 
-Things you may want to cover:
+Download the application. And run
+```
+rake db:migrate
+rake db:seed
+rails s
+```
 
-* Ruby version
+### API endpoints
+```
+GET /v1/store/:store_id/items.json
+```
+Returns all the items of a specific merchandise store
+####Request parameters
+| Parameter 	 | Type 	    | Required  	 | Default	 | Example |
+|-------------|-----------|-------------|----------|---------|
+| page 	      | Integer 	 | No	         | 	1       | 2       |
+| per	        | Integer	  | No	         | 	25      | 10      |
 
-* System dependencies
+####Response
+```json
+[
+  {
+    "code": "MUG",
+    "name": "Reedsy Mug",
+    "price": 600
+  },
+  {
+    "code": "TSHIRT",
+    "name": "Reedsy T-shirt",
+    "price": 1500
+  },
+  {
+    "code": "HOODIE",
+    "name": "Reedsy Hoodie",
+    "price": 2000
+  }
+]
+```
 
-* Configuration
+```
+PATCH /v1/store/:store_id/items/:id/update_price
+```
+Updates the price of a item
+####Request parameters
+| Parameter 	 | Type 	    | Required  	 | Example |
+|-------------|-----------|-------------|---------|
+| price 	     | Integer 	 | Yes	        | 1200    |
 
-* Database creation
+####Response
+Success
+```
+:no_content
+```
+Error: price is not passed
+```
+:unprocessable_entity
+```
 
-* Database initialization
+```
+GET /v1/store/:store_id/items/add_price
+```
+Returns the total price of all passed items
+####Request parameters
+| Parameter 	 | Type 	   | Required  	 |Example|
+|-------------|----------|-------------|-------|
+| item_codes 	      | String 	 | No	         |   MUG, TSHIRT, HOODIE    |
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+####Response
+```json
+{
+  "items": "MUG, TSHIRT, HOODIE",
+  "total": "41.00€"
+}
+```
