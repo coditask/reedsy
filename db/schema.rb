@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_08_235608) do
+ActiveRecord::Schema.define(version: 2022_01_09_001123) do
 
   create_table "free_discounts", force: :cascade do |t|
     t.integer "minimum_items", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2022_01_08_235608) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "store_id", null: false
+    t.integer "free_discount_id"
+    t.integer "percentage_discount_id"
     t.index ["code", "store_id"], name: "index_items_on_code_and_store_id", unique: true
     t.index ["store_id"], name: "index_items_on_store_id"
   end
