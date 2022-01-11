@@ -1,6 +1,6 @@
 # README
 
-#Preface
+# Preface
 Hello, my name is Ravi Kumar and 34 years old. I have completed my masters in Communication and Signal processing from IIT Bombay, India.
 Just after finishing my masters, I moved to Tokyo to work as Web developer for Rakuten. After living there for 3 years, I moved to Germany.I have a long experience of working with ruby on Rails.
 I like to traveling, listening to the music, learning about finance and stock market. In my studies, I consider securing a place in India's best engineering college is an achievement for me.\
