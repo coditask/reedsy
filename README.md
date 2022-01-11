@@ -15,8 +15,8 @@ Some of the good projects I have worked on are
 - Integrating Okta Omniauth login
 - Adding coupon redemptions at YogaEasy
 
-#Setup
-###Ruby requirement: **3.1.0*
+# Setup
+### Ruby requirement: *3.1.0*
 
 Download the application. And run
 ```
@@ -30,13 +30,13 @@ rails s
 GET /v1/store/:store_id/items.json
 ```
 Returns all the items of a specific merchandise store
-####Request parameters
+#### Request parameters
 | Parameter 	 | Type 	    | Required  	 | Default	 | Example |
 |-------------|-----------|-------------|----------|---------|
 | page 	      | Integer 	 | No	         | 	1       | 2       |
 | per	        | Integer	  | No	         | 	25      | 10      |
 
-####Response
+#### Response
 ```json
 [
   {
@@ -61,12 +61,12 @@ Returns all the items of a specific merchandise store
 PATCH /v1/store/:store_id/items/:id/update_price
 ```
 Updates the price of a item
-####Request parameters
+#### Request parameters
 | Parameter 	 | Type 	    | Required  	 | Example |
 |-------------|-----------|-------------|---------|
 | price 	     | Integer 	 | Yes	        | 1200    |
 
-####Response
+#### Response
 Success
 ```
 :no_content
@@ -80,12 +80,12 @@ Error: price is not passed
 GET /v1/store/:store_id/items/add_price
 ```
 Returns the total price of all passed items
-####Request parameters
+#### Request parameters
 | Parameter 	 | Type 	   | Required  	 |Example|
 |-------------|----------|-------------|-------|
 | item_codes 	      | String 	 | No	         |   MUG, TSHIRT, HOODIE    |
 
-####Response
+#### Response
 ```json
 {
   "items": "MUG, TSHIRT, HOODIE",
